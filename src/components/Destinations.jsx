@@ -1,3 +1,8 @@
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
+import { MapPinIcon } from "../icons";
+
 const destinations = [
   {
     name: "Bali, Indonesia",
@@ -5,6 +10,7 @@ const destinations = [
     price: "$899",
     emoji: "🏝️",
     bg: "bg-teal-50",
+    badge: "Trending",
   },
   {
     name: "Paris, France",
@@ -12,6 +18,7 @@ const destinations = [
     price: "$1,199",
     emoji: "🗼",
     bg: "bg-indigo-50",
+    badge: "Popular",
   },
   {
     name: "Dubai, UAE",
@@ -19,6 +26,7 @@ const destinations = [
     price: "$1,050",
     emoji: "🏜️",
     bg: "bg-orange-50",
+    badge: "New",
   },
   {
     name: "Tokyo, Japan",
@@ -26,6 +34,7 @@ const destinations = [
     price: "$1,300",
     emoji: "🗾",
     bg: "bg-pink-50",
+    badge: "Trending",
   },
   {
     name: "New York, USA",
@@ -33,6 +42,7 @@ const destinations = [
     price: "$950",
     emoji: "🗽",
     bg: "bg-blue-50",
+    badge: "Popular",
   },
   {
     name: "Santorini, Greece",
@@ -40,6 +50,7 @@ const destinations = [
     price: "$1,400",
     emoji: "🏛️",
     bg: "bg-green-50",
+    badge: "New",
   },
 ];
 
@@ -55,39 +66,48 @@ function Destinations() {
             </p>
             <h2 className="text-2xl font-bold">Popular Destinations</h2>
           </div>
-          <a href="#" className="text-sm text-teal-600 hover:underline">
+          <Button variant="ghost" className="text-teal-600 hover:text-teal-700">
             See all →
-          </a>
+          </Button>
         </div>
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinations.map((dest, index) => (
-            <div
+            <Card
               key={index}
-              className="border border-gray-100 rounded-2xl overflow-hidden bg-white hover:shadow-md transition"
+              className="overflow-hidden hover:shadow-md transition"
             >
               {/* Image */}
               <div
-                className={`${dest.bg} h-40 flex items-center justify-center text-6xl`}
+                className={`${dest.bg} h-40 flex items-center justify-center text-6xl relative`}
               >
                 {dest.emoji}
+                <Badge className="absolute top-3 left-3 bg-teal-600 hover:bg-teal-700 text-white">
+                  {dest.badge}
+                </Badge>
               </div>
 
-              {/* Info */}
-              <div className="p-4">
+              <CardContent className="p-4">
                 <h3 className="font-semibold text-base mb-1">{dest.name}</h3>
-                <p className="text-xs text-gray-400 mb-3">📍 {dest.region}</p>
+                <p className="text-xs text-gray-400 flex items-center gap-1 mb-3">
+                  <MapPinIcon />
+                  {dest.region}
+                </p>
                 <div className="flex justify-between items-center">
                   <span className="text-teal-600 font-bold">
                     from {dest.price}
                   </span>
-                  <button className="bg-teal-50 text-teal-600 px-4 py-2 rounded-lg text-xs hover:bg-teal-600 hover:text-white transition">
+                  <Button
+                    size="sm"
+                    className="bg-teal-50 text-teal-600 hover:bg-teal-600 hover:text-white border border-teal-200"
+                    variant="outline"
+                  >
                     Book now
-                  </button>
+                  </Button>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

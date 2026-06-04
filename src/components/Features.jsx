@@ -1,21 +1,24 @@
+import { Card, CardContent } from "./ui/card";
+import { ShieldIcon, DollarIcon, HeadsetIcon, MapIcon } from "../icons";
+
 const features = [
   {
-    icon: "🛡️",
+    icon: <ShieldIcon />,
     title: "Safe & trusted",
     desc: "All tours are verified and fully insured for your peace of mind.",
   },
   {
-    icon: "💰",
+    icon: <DollarIcon />,
     title: "Best price guarantee",
     desc: "We match any lower price you find, no questions asked.",
   },
   {
-    icon: "🎧",
+    icon: <HeadsetIcon />,
     title: "24/7 support",
     desc: "Our team is always available before and during your trip.",
   },
   {
-    icon: "🗺️",
+    icon: <MapIcon />,
     title: "Custom itineraries",
     desc: "We build personalized travel plans that fit your style and budget.",
   },
@@ -36,16 +39,15 @@ function Features() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white border border-gray-100 rounded-2xl p-5 flex flex-col gap-3"
-            >
-              <span className="text-3xl">{feature.icon}</span>
-              <h3 className="font-semibold text-sm">{feature.title}</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                {feature.desc}
-              </p>
-            </div>
+            <Card key={index} className="hover:shadow-md transition">
+              <CardContent className="p-5 flex flex-col gap-3">
+                <span className="text-teal-600">{feature.icon}</span>
+                <h3 className="font-semibold text-sm">{feature.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  {feature.desc}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

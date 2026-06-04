@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { PlaneIcon, MapPinIcon } from "../icons";
+import { Plane, MapPin } from "../icons";
 
 function Hero() {
   return (
@@ -8,7 +8,7 @@ function Hero() {
       <div className="max-w-3xl mx-auto flex flex-col items-center gap-5">
         {/* Tag */}
         <span className="flex items-center gap-2 text-xs tracking-widest uppercase text-teal-600 font-medium">
-          <PlaneIcon />
+          <Plane />
           Explore the world
         </span>
 
@@ -27,7 +27,7 @@ function Hero() {
         {/* Search bar */}
         <div className="flex items-center bg-white border border-gray-200 rounded-xl px-4 py-2 w-full max-w-lg gap-3 mt-2">
           <span className="text-teal-600">
-            <MapPinIcon />
+            <MapPin />
           </span>
           <Input
             type="text"

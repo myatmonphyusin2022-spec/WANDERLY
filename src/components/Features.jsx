@@ -1,24 +1,23 @@
 import { Card, CardContent } from "./ui/card";
-import { ShieldIcon, DollarIcon, HeadsetIcon, MapIcon } from "../icons";
-
+import { Shield, DollarSign, Headphones, Map } from "../icons";
 const features = [
   {
-    icon: <ShieldIcon />,
+    icon: <Shield />,
     title: "Safe & trusted",
     desc: "All tours are verified and fully insured for your peace of mind.",
   },
   {
-    icon: <DollarIcon />,
+    icon: <DollarSign />,
     title: "Best price guarantee",
     desc: "We match any lower price you find, no questions asked.",
   },
   {
-    icon: <HeadsetIcon />,
+    icon: <Headphones />,
     title: "24/7 support",
     desc: "Our team is always available before and during your trip.",
   },
   {
-    icon: <MapIcon />,
+    icon: <Map />,
     title: "Custom itineraries",
     desc: "We build personalized travel plans that fit your style and budget.",
   },

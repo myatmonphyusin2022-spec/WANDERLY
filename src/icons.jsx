@@ -23,4 +23,7 @@ export {
   Mountain,
   Waves,
   Building,
+  Lock,
+  User,
+  Calendar,
 } from "lucide-react";

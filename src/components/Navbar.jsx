@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import DarkMode from "./DarkMode";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Menu, Plane, Mail, Lock, User, CheckCircle } from "../icons";
@@ -88,7 +89,9 @@ function Navbar() {
         </ul>
 
         {/* Desktop buttons */}
-        <div className="hidden md:flex gap-3">
+        {/* Desktop buttons */}
+        <div className="hidden md:flex gap-3 items-center">
+          <DarkMode />
           <Button
             variant="outline"
             className="text-teal-600 border-teal-600 hover:bg-teal-50"
@@ -152,6 +155,13 @@ function Navbar() {
               >
                 Contact
               </Link>
+
+              {/* Dark mode toggle */}
+              <div className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2">
+                <span className="text-sm text-gray-500">Dark mode</span>
+                <DarkMode />
+              </div>
+
               <Button
                 variant="outline"
                 className="text-teal-600 border-teal-600 w-full"

@@ -4,9 +4,28 @@ import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Star, Clock, Users, CheckCircle, ArrowRight } from "../icons";
+import BookingDialog from "../components/BookingDialog";
 
 function Tours() {
   const [selected, setSelected] = useState(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState(null);
+
+  const handleBookNow = (tour) => {
+    // convert tour data to match BookingDialog format
+    setSelectedTour({
+      id: tour.id,
+      name: tour.name,
+      region: "Worldwide",
+      price: tour.price,
+      rating: tour.rating,
+      reviews: 0,
+      duration: tour.duration,
+      emoji: tour.emoji,
+      description: `Group size: ${tour.groupSize}`,
+    });
+    setBookingOpen(true);
+  };
 
   return (
     <main className="py-16 px-6">
@@ -28,16 +47,18 @@ function Tours() {
           {tours.map((tour) => (
             <Card
               key={tour.id}
-              className={`overflow-hidden hover:shadow-md transition cursor-pointer border-2 ${
+              className={`overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer border-2 ${
                 selected === tour.id ? "border-teal-600" : "border-transparent"
               }`}
               onClick={() => setSelected(tour.id)}
             >
               {/* Image */}
               <div
-                className={`${tour.bg} h-44 flex items-center justify-center text-6xl relative`}
+                className={`${tour.bg} h-44 flex items-center justify-center text-6xl relative overflow-hidden`}
               >
-                {tour.emoji}
+                <span className="group-hover:scale-110 transition-transform duration-300">
+                  {tour.emoji}
+                </span>
                 {selected === tour.id && (
                   <Badge className="absolute top-3 right-3 bg-teal-600 text-white">
                     Selected ✓
@@ -84,6 +105,10 @@ function Tours() {
                   <Button
                     size="sm"
                     className="bg-teal-600 hover:bg-teal-700 text-white gap-1"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleBookNow(tour);
+                    }}
                   >
                     Book now
                     <ArrowRight className="w-3 h-3" />
@@ -102,15 +127,27 @@ function Tours() {
               {tours.find((t) => t.id === selected)?.name}
             </p>
             <p className="text-sm text-gray-500 mb-4">
-              Ready to book? Contact us and we'll get you started!
+              Ready to book? Click below to get started!
             </p>
-            <Button className="bg-teal-600 hover:bg-teal-700 text-white gap-2">
+            <Button
+              className="bg-teal-600 hover:bg-teal-700 text-white gap-2"
+              onClick={() =>
+                handleBookNow(tours.find((t) => t.id === selected))
+              }
+            >
               Proceed to booking
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
         )}
       </div>
+
+      {/* Booking Dialog */}
+      <BookingDialog
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        destination={selectedTour}
+      />
     </main>
   );
 }

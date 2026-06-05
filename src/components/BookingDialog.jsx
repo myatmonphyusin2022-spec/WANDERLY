@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { toast } from "sonner";
 import {
   MapPin,
   Clock,
@@ -44,6 +45,10 @@ function BookingDialog({ open, onClose, destination }) {
     }
     setError("");
     setStep(3);
+    toast.success(`Booking confirmed for ${destination.name}! 🎉`, {
+      description: `We'll send details to ${form.email}`,
+      duration: 5000,
+    });
   };
 
   const handleClose = () => {
@@ -68,7 +73,6 @@ function BookingDialog({ open, onClose, destination }) {
         {/* Step 1 - Personal info */}
         {step === 1 && (
           <div className="flex flex-col gap-4 py-4">
-            {/* Destination info */}
             <div className="bg-teal-50 rounded-xl p-4 flex flex-col gap-2">
               <p className="text-xs text-gray-400 flex items-center gap-1">
                 <MapPin className="w-3 h-3" /> {destination.region}
@@ -169,7 +173,6 @@ function BookingDialog({ open, onClose, destination }) {
               </select>
             </div>
 
-            {/* Summary */}
             <div className="bg-gray-50 rounded-xl p-4 flex flex-col gap-2">
               <p className="text-xs font-semibold text-gray-600 mb-1">
                 Booking summary

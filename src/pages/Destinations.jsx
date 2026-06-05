@@ -1,7 +1,7 @@
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { Card, CardContent } from "./ui/card";
-import { MapPinIcon } from "../icons";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import { Card, CardContent } from "../components/ui/card";
+import { MapPin} from "../icons";
 
 const destinations = [
   {
@@ -91,7 +91,7 @@ function Destinations() {
               <CardContent className="p-4">
                 <h3 className="font-semibold text-base mb-1">{dest.name}</h3>
                 <p className="text-xs text-gray-400 flex items-center gap-1 mb-3">
-                  <MapPinIcon />
+                  <MapPin />
                   {dest.region}
                 </p>
                 <div className="flex justify-between items-center">

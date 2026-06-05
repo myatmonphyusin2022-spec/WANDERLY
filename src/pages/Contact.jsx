@@ -3,7 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent } from "../components/ui/card";
 import { Mail, Phone, MapPin, Globe, CheckCircle } from "../icons";
-
+import { toast } from "sonner";
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -20,6 +20,10 @@ function Contact() {
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.message) return;
     setSubmitted(true);
+    toast.success("Message sent successfully! 🎉", {
+      description: "We'll get back to you within 24 hours.",
+      duration: 5000,
+    });
   };
 
   return (

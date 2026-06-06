@@ -19,14 +19,16 @@ function Wishlist() {
   };
 
   return (
-    <main className="py-16 px-6">
+    <main className="py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 md:mb-10">
           <p className="text-xs tracking-widest uppercase text-teal-600 mb-2">
             Your saved places
           </p>
-          <h1 className="text-4xl font-bold mb-3">My Wishlist ❤️</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            My Wishlist ❤️
+          </h1>
           <p className="text-gray-400 text-sm max-w-md mx-auto">
             All the destinations you've saved for your next adventure.
           </p>
@@ -34,12 +36,12 @@ function Wishlist() {
 
         {/* Empty state */}
         {wishlist.length === 0 && (
-          <div className="text-center py-20 flex flex-col items-center gap-4">
+          <div className="text-center py-16 md:py-20 flex flex-col items-center gap-4">
             <p className="text-6xl">🗺️</p>
             <p className="text-gray-400 text-sm">
               You haven't saved any destinations yet!
             </p>
-            <p className="text-xs text-gray-300">
+            <p className="text-xs text-gray-300 max-w-xs mx-auto">
               Go to Destinations and click the ❤️ heart button to save places.
             </p>
             <Button
@@ -52,7 +54,7 @@ function Wishlist() {
           </div>
         )}
 
-        {/* Cards grid */}
+        {/* Cards */}
         {wishlist.length > 0 && (
           <>
             <p className="text-sm text-gray-400 mb-6">
@@ -63,14 +65,14 @@ function Wishlist() {
               saved {wishlist.length === 1 ? "destination" : "destinations"}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {wishlist.map((dest) => (
                 <Card
                   key={dest.id}
                   className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
                 >
                   {/* Image */}
-                  <div className="h-44 relative overflow-hidden">
+                  <div className="h-48 md:h-44 relative overflow-hidden">
                     <img
                       src={dest.image}
                       alt={dest.name}
@@ -104,7 +106,6 @@ function Wishlist() {
                     <p className="text-xs text-gray-500 mb-3 line-clamp-2">
                       {dest.description}
                     </p>
-
                     <div className="flex items-center gap-4 mb-3">
                       <span className="flex items-center gap-1 text-xs text-gray-500">
                         <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
@@ -115,7 +116,6 @@ function Wishlist() {
                         {dest.duration}
                       </span>
                     </div>
-
                     <div className="flex justify-between items-center">
                       <span className="text-teal-600 font-bold">
                         from {dest.price}

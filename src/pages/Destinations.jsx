@@ -16,6 +16,9 @@ const regions = [
   "Middle East",
   "East Asia",
   "North America",
+  "Africa",
+  "Australia",
+  "South America",
 ];
 
 function Destinations() {

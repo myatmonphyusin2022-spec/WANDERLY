@@ -15,6 +15,7 @@ export {
   Heart,
   Search,
   ArrowRight,
+  ArrowUp,
   Phone,
   Mail,
   CheckCircle,

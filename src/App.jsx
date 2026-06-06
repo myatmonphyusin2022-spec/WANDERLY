@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Destinations from "./pages/Destinations";
 import Tours from "./pages/Tours";
 import Contact from "./pages/Contact";
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
+      <ScrollToTop />
     </BrowserRouter>
   );
 }

@@ -1,86 +1,38 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
+import { MapPin, Star, Clock, Heart, ArrowRight } from "../icons";
 import { destinations } from "../data";
-import { Card, CardContent } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { MapPin, Search, Star, Clock, Heart, X } from "../icons";
-import BookingDialog from "../components/BookingDialog";
+import { useWishlist } from "../context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
-function Destinations() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [liked, setLiked] = useState([]);
-  const [selectedDest, setSelectedDest] = useState(null);
-  const [bookingOpen, setBookingOpen] = useState(false);
-
-  const query = searchParams.get("search") || "";
-
-  const handleSearch = (value) => {
-    setSearchParams({ search: value });
-  };
-
-  const toggleLike = (id) => {
-    setLiked((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
-    );
-  };
-
-  const handleBookNow = (dest) => {
-    setSelectedDest(dest);
-    setBookingOpen(true);
-  };
-
-  const filtered = destinations.filter((d) =>
-    d.name.toLowerCase().includes(query.toLowerCase()),
-  );
+function DestinationCards() {
+  const { toggleWishlist, isWishlisted } = useWishlist();
+  const navigate = useNavigate();
 
   return (
-    <main className="py-16 px-6">
+    <section className="py-16 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
-          <p className="text-xs tracking-widest uppercase text-teal-600 mb-2">
-            Explore the world
-          </p>
-          <h1 className="text-4xl font-bold mb-3">All Destinations</h1>
-          <p className="text-gray-400 text-sm max-w-md mx-auto">
-            Browse all our handpicked destinations and find your perfect
-            getaway.
-          </p>
+        <div className="flex justify-between items-end mb-8">
+          <div>
+            <p className="text-xs tracking-widest uppercase text-gray-400 mb-1">
+              Explore now
+            </p>
+            <h2 className="text-2xl font-bold">Popular Destinations</h2>
+          </div>
+          <Button
+            variant="ghost"
+            className="text-teal-600 hover:text-teal-700 gap-1"
+            onClick={() => navigate("/destinations")}
+          >
+            See all <ArrowRight className="w-4 h-4" />
+          </Button>
         </div>
-
-        {/* Search */}
-        <div className="flex items-center bg-white border border-gray-200 rounded-xl px-4 py-2 max-w-lg mx-auto gap-3 mb-10">
-          <Search className="text-teal-600 w-4 h-4 shrink-0" />
-          <Input
-            type="text"
-            placeholder="Search destinations..."
-            className="border-none shadow-none focus-visible:ring-0 text-sm"
-            value={query}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-          {query && (
-            <button onClick={() => handleSearch("")}>
-              <X className="w-4 h-4 text-gray-400 hover:text-red-500 transition" />
-            </button>
-          )}
-        </div>
-
-        {/* Results count */}
-        {query && (
-          <p className="text-sm text-gray-400 text-center mb-6">
-            Showing{" "}
-            <span className="text-teal-600 font-semibold">
-              {filtered.length}
-            </span>{" "}
-            results for "{query}"
-          </p>
-        )}
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((dest) => (
+          {destinations.slice(0, 3).map((dest) => (
             <Card
               key={dest.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
@@ -95,12 +47,12 @@ function Destinations() {
                   {dest.badge}
                 </Badge>
                 <button
-                  onClick={() => toggleLike(dest.id)}
+                  onClick={() => toggleWishlist(dest)}
                   className="absolute top-3 right-3 bg-white rounded-full p-1.5 shadow"
                 >
                   <Heart
                     className={`w-4 h-4 transition ${
-                      liked.includes(dest.id)
+                      isWishlisted(dest.id)
                         ? "fill-red-500 text-red-500"
                         : "text-gray-400"
                     }`}
@@ -134,7 +86,7 @@ function Destinations() {
                   <Button
                     size="sm"
                     className="bg-teal-600 hover:bg-teal-700 text-white"
-                    onClick={() => handleBookNow(dest)}
+                    onClick={() => navigate("/destinations")}
                   >
                     Book now
                   </Button>
@@ -143,36 +95,9 @@ function Destinations() {
             </Card>
           ))}
         </div>
-
-        {/* No results */}
-        {filtered.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-4xl mb-4">🔍</p>
-            <p className="text-gray-400 text-sm mb-2">
-              No destinations found for "{query}"
-            </p>
-            <p className="text-xs text-gray-300 mb-4">
-              Try searching for Bali, Paris, Tokyo or Dubai
-            </p>
-            <Button
-              variant="outline"
-              className="text-teal-600 border-teal-600"
-              onClick={() => handleSearch("")}
-            >
-              Clear search
-            </Button>
-          </div>
-        )}
       </div>
-
-      {/* Booking Dialog */}
-      <BookingDialog
-        open={bookingOpen}
-        onClose={() => setBookingOpen(false)}
-        destination={selectedDest}
-      />
-    </main>
+    </section>
   );
 }
 
-export default Destinations;
+export default DestinationCards;

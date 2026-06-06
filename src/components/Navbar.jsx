@@ -6,6 +6,8 @@ import DarkMode from "./DarkMode";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Menu, Plane, Mail, Lock, User, CheckCircle } from "../icons";
+import { useWishlist } from "../context/WishlistContext";
+import { Heart } from "../icons";
 
 function Navbar() {
   const [signInOpen, setSignInOpen] = useState(false);
@@ -14,6 +16,7 @@ function Navbar() {
   const [registerDone, setRegisterDone] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [registerError, setRegisterError] = useState("");
+  const { wishlist } = useWishlist();
 
   const [signInForm, setSignInForm] = useState({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState({
@@ -53,7 +56,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex gap-8 list-none">
+        <ul className="hidden md:flex gap-8 list-none items-center">
           <li>
             <Link
               to="/"
@@ -84,6 +87,19 @@ function Navbar() {
               className="text-sm text-gray-500 hover:text-teal-600 transition"
             >
               Contact
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/wishlist"
+              className="relative flex items-center text-gray-500 hover:text-red-500 transition"
+            >
+              <Heart className="w-5 h-5" />
+              {wishlist.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {wishlist.length}
+                </span>
+              )}
             </Link>
           </li>
         </ul>

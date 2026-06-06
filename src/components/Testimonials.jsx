@@ -42,14 +42,14 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section className="py-16 px-6 bg-teal-50 dark:bg-teal-950">
+    <section className="py-12 md:py-16 px-4 md:px-6 bg-teal-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 md:mb-10">
           <p className="text-xs tracking-widest uppercase text-teal-600 mb-2">
             What they say
           </p>
-          <h2 className="text-2xl font-bold mb-3">
+          <h2 className="text-xl md:text-2xl font-bold mb-3">
             Travelers love Wanderly ❤️
           </h2>
           <p className="text-gray-400 text-sm max-w-md mx-auto">
@@ -58,13 +58,13 @@ function Testimonials() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {testimonials.map((t) => (
             <Card
               key={t.id}
               className="hover:shadow-lg transition-all duration-300"
             >
-              <CardContent className="p-5 flex flex-col gap-3">
+              <CardContent className="p-4 md:p-5 flex flex-col gap-3">
                 {/* Stars */}
                 <div className="flex gap-1">
                   {Array.from({ length: t.rating }).map((_, i) => (
@@ -76,7 +76,7 @@ function Testimonials() {
                 </div>
 
                 {/* Review text */}
-                <p className="text-xs text-gray-500 leading-relaxed">
+                <p className="text-xs text-gray-500 leading-relaxed line-clamp-4">
                   "{t.text}"
                 </p>
 

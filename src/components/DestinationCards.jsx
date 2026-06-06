@@ -11,19 +11,21 @@ function DestinationCards() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-16 px-6">
+    <section className="py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-end mb-8">
+        <div className="flex justify-between items-end mb-6 md:mb-8">
           <div>
             <p className="text-xs tracking-widest uppercase text-gray-400 mb-1">
               Explore now
             </p>
-            <h2 className="text-2xl font-bold">Popular Destinations</h2>
+            <h2 className="text-xl md:text-2xl font-bold">
+              Popular Destinations
+            </h2>
           </div>
           <Button
             variant="ghost"
-            className="text-teal-600 hover:text-teal-700 gap-1"
+            className="text-teal-600 hover:text-teal-700 gap-1 text-xs md:text-sm"
             onClick={() => navigate("/destinations")}
           >
             See all <ArrowRight className="w-4 h-4" />
@@ -31,13 +33,13 @@ function DestinationCards() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {destinations.slice(0, 3).map((dest) => (
             <Card
               key={dest.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
             >
-              <div className="h-44 relative overflow-hidden">
+              <div className="h-48 md:h-44 relative overflow-hidden">
                 <img
                   src={dest.image}
                   alt={dest.name}

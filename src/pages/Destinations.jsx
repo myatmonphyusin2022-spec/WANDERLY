@@ -9,10 +9,20 @@ import { MapPin, Search, Star, Clock, Heart, X } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useWishlist } from "../context/WishlistContext";
 
+const regions = [
+  "All",
+  "Southeast Asia",
+  "Europe",
+  "Middle East",
+  "East Asia",
+  "North America",
+];
+
 function Destinations() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedDest, setSelectedDest] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState("All");
   const { toggleWishlist, isWishlisted } = useWishlist();
 
   const query = searchParams.get("search") || "";
@@ -26,9 +36,12 @@ function Destinations() {
     setBookingOpen(true);
   };
 
-  const filtered = destinations.filter((d) =>
-    d.name.toLowerCase().includes(query.toLowerCase()),
-  );
+  const filtered = destinations.filter((d) => {
+    const matchesSearch = d.name.toLowerCase().includes(query.toLowerCase());
+    const matchesRegion =
+      selectedRegion === "All" || d.region === selectedRegion;
+    return matchesSearch && matchesRegion;
+  });
 
   return (
     <main className="py-16 px-6">
@@ -46,7 +59,7 @@ function Destinations() {
         </div>
 
         {/* Search */}
-        <div className="flex items-center bg-white border border-gray-200 rounded-xl px-4 py-2 max-w-lg mx-auto gap-3 mb-10">
+        <div className="flex items-center bg-white border border-gray-200 rounded-xl px-4 py-2 max-w-lg mx-auto gap-3 mb-6">
           <Search className="text-teal-600 w-4 h-4 shrink-0" />
           <Input
             type="text"
@@ -62,14 +75,39 @@ function Destinations() {
           )}
         </div>
 
+        {/* Region filters */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {regions.map((region) => (
+            <button
+              key={region}
+              onClick={() => setSelectedRegion(region)}
+              className={`text-xs px-4 py-2 rounded-full border transition ${
+                selectedRegion === region
+                  ? "bg-teal-600 text-white border-teal-600"
+                  : "bg-white text-gray-500 border-gray-200 hover:border-teal-600 hover:text-teal-600"
+              }`}
+            >
+              {region}
+            </button>
+          ))}
+        </div>
+
         {/* Results count */}
-        {query && (
+        {(query || selectedRegion !== "All") && (
           <p className="text-sm text-gray-400 text-center mb-6">
             Showing{" "}
             <span className="text-teal-600 font-semibold">
               {filtered.length}
             </span>{" "}
-            results for "{query}"
+            {selectedRegion !== "All" && (
+              <span>
+                destinations in{" "}
+                <span className="text-teal-600 font-semibold">
+                  {selectedRegion}
+                </span>
+              </span>
+            )}
+            {query && <span> for "{query}"</span>}
           </p>
         )}
 
@@ -81,12 +119,12 @@ function Destinations() {
               className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
             >
               {/* Image */}
-              <div
-                className={`${dest.bg} h-44 flex items-center justify-center text-6xl relative overflow-hidden`}
-              >
-                <span className="group-hover:scale-110 transition-transform duration-300">
-                  {dest.emoji}
-                </span>
+              <div className="h-44 relative overflow-hidden">
+                <img
+                  src={dest.image}
+                  alt={dest.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
                 <Badge className="absolute top-3 left-3 bg-teal-600 text-white">
                   {dest.badge}
                 </Badge>
@@ -147,19 +185,26 @@ function Destinations() {
         {filtered.length === 0 && (
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🔍</p>
-            <p className="text-gray-400 text-sm mb-2">
-              No destinations found for "{query}"
-            </p>
+            <p className="text-gray-400 text-sm mb-2">No destinations found!</p>
             <p className="text-xs text-gray-300 mb-4">
-              Try searching for Bali, Paris, Tokyo or Dubai
+              Try a different region or search term
             </p>
-            <Button
-              variant="outline"
-              className="text-teal-600 border-teal-600"
-              onClick={() => handleSearch("")}
-            >
-              Clear search
-            </Button>
+            <div className="flex gap-3 justify-center">
+              <Button
+                variant="outline"
+                className="text-teal-600 border-teal-600"
+                onClick={() => handleSearch("")}
+              >
+                Clear search
+              </Button>
+              <Button
+                variant="outline"
+                className="text-teal-600 border-teal-600"
+                onClick={() => setSelectedRegion("All")}
+              >
+                Clear filter
+              </Button>
+            </div>
           </div>
         )}
       </div>

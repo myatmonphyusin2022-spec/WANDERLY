@@ -7,7 +7,8 @@ export const destinations = [
     rating: 4.9,
     reviews: 320,
     duration: "7 days",
-    emoji: "🏝️",
+    image:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop",
     bg: "bg-teal-50",
     badge: "Trending",
     description:
@@ -21,7 +22,8 @@ export const destinations = [
     rating: 4.8,
     reviews: 512,
     duration: "5 days",
-    emoji: "🗼",
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop",
     bg: "bg-indigo-50",
     badge: "Popular",
     description:
@@ -35,7 +37,8 @@ export const destinations = [
     rating: 4.7,
     reviews: 280,
     duration: "6 days",
-    emoji: "🏙️",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop",
     bg: "bg-orange-50",
     badge: "New",
     description:
@@ -49,7 +52,8 @@ export const destinations = [
     rating: 4.9,
     reviews: 430,
     duration: "8 days",
-    emoji: "🗼",
+    image:
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop",
     bg: "bg-pink-50",
     badge: "Trending",
     description:
@@ -63,7 +67,8 @@ export const destinations = [
     rating: 4.7,
     reviews: 390,
     duration: "5 days",
-    emoji: "🗽",
+    image:
+      "https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?w=600&auto=format&fit=crop",
     bg: "bg-blue-50",
     badge: "Popular",
     description:
@@ -77,7 +82,8 @@ export const destinations = [
     rating: 4.9,
     reviews: 510,
     duration: "6 days",
-    emoji: "🏛️",
+    image:
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop",
     bg: "bg-green-50",
     badge: "New",
     description:
@@ -126,7 +132,8 @@ export const tours = [
     groupSize: "12 people",
     price: "$899",
     rating: 4.9,
-    emoji: "🏝️",
+    image:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop",
     bg: "bg-teal-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
   },
@@ -137,7 +144,8 @@ export const tours = [
     groupSize: "8 people",
     price: "$1,199",
     rating: 4.8,
-    emoji: "🗼",
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop",
     bg: "bg-indigo-50",
     includes: ["Hotel", "Flights", "Guide", "Breakfast"],
   },
@@ -148,7 +156,8 @@ export const tours = [
     groupSize: "10 people",
     price: "$1,050",
     rating: 4.7,
-    emoji: "🏙️",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop",
     bg: "bg-orange-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
   },

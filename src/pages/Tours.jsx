@@ -53,12 +53,12 @@ function Tours() {
               onClick={() => setSelected(tour.id)}
             >
               {/* Image */}
-              <div
-                className={`${tour.bg} h-44 flex items-center justify-center text-6xl relative overflow-hidden`}
-              >
-                <span className="group-hover:scale-110 transition-transform duration-300">
-                  {tour.emoji}
-                </span>
+              <div className="h-44 relative overflow-hidden">
+                <img
+                  src={tour.image}
+                  alt={tour.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
                 {selected === tour.id && (
                   <Badge className="absolute top-3 right-3 bg-teal-600 text-white">
                     Selected ✓

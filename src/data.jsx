@@ -8,7 +8,7 @@ export const destinations = [
     reviews: 320,
     duration: "7 days",
     image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&auto=format&fit=crop",
     bg: "bg-teal-50",
     badge: "Trending",
     description:
@@ -23,7 +23,7 @@ export const destinations = [
     reviews: 512,
     duration: "5 days",
     image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&auto=format&fit=crop",
     bg: "bg-indigo-50",
     badge: "Popular",
     description:
@@ -38,7 +38,7 @@ export const destinations = [
     reviews: 280,
     duration: "6 days",
     image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop",
     bg: "bg-orange-50",
     badge: "New",
     description:
@@ -53,7 +53,7 @@ export const destinations = [
     reviews: 430,
     duration: "8 days",
     image:
-      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&auto=format&fit=crop",
     bg: "bg-pink-50",
     badge: "Trending",
     description:
@@ -68,7 +68,7 @@ export const destinations = [
     reviews: 390,
     duration: "5 days",
     image:
-      "https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522083165195-3424ed129620?w=600&auto=format&fit=crop",
     bg: "bg-blue-50",
     badge: "Popular",
     description:
@@ -83,7 +83,7 @@ export const destinations = [
     reviews: 510,
     duration: "6 days",
     image:
-      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop",
     bg: "bg-green-50",
     badge: "New",
     description:
@@ -133,7 +133,7 @@ export const tours = [
     price: "$899",
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&auto=format&fit=crop",
     bg: "bg-teal-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
   },
@@ -145,7 +145,7 @@ export const tours = [
     price: "$1,199",
     rating: 4.8,
     image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&auto=format&fit=crop",
     bg: "bg-indigo-50",
     includes: ["Hotel", "Flights", "Guide", "Breakfast"],
   },
@@ -157,7 +157,7 @@ export const tours = [
     price: "$1,050",
     rating: 4.7,
     image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop",
     bg: "bg-orange-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
   },

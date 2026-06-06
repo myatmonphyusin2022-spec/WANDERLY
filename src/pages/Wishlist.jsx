@@ -70,12 +70,12 @@ function Wishlist() {
                   className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
                 >
                   {/* Image */}
-                  <div
-                    className={`${dest.bg} h-44 flex items-center justify-center text-6xl relative overflow-hidden`}
-                  >
-                    <span className="group-hover:scale-110 transition-transform duration-300">
-                      {dest.emoji}
-                    </span>
+                  <div className="h-44 relative overflow-hidden">
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
                     <Badge className="absolute top-3 left-3 bg-teal-600 text-white">
                       {dest.badge}
                     </Badge>

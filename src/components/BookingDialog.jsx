@@ -64,15 +64,24 @@ function BookingDialog({ open, onClose, destination }) {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
-            <span className="text-2xl">{destination.emoji}</span>
-            Book {destination.name}
-          </DialogTitle>
+          <DialogTitle className="text-xl">Book {destination.name}</DialogTitle>
         </DialogHeader>
 
         {/* Step 1 - Personal info */}
         {step === 1 && (
           <div className="flex flex-col gap-4 py-4">
+            {/* Real image */}
+            {destination.image && (
+              <div className="h-36 rounded-xl overflow-hidden">
+                <img
+                  src={destination.image}
+                  alt={destination.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+
+            {/* Destination info */}
             <div className="bg-teal-50 rounded-xl p-4 flex flex-col gap-2">
               <p className="text-xs text-gray-400 flex items-center gap-1">
                 <MapPin className="w-3 h-3" /> {destination.region}

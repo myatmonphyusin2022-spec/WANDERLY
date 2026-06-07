@@ -37,7 +37,8 @@ function DestinationCards() {
           {destinations.slice(0, 3).map((dest) => (
             <Card
               key={dest.id}
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
+              className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              onClick={() => navigate(`/destinations/${dest.id}`)}
             >
               <div className="h-48 md:h-44 relative overflow-hidden">
                 <img
@@ -49,7 +50,10 @@ function DestinationCards() {
                   {dest.badge}
                 </Badge>
                 <button
-                  onClick={() => toggleWishlist(dest)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleWishlist(dest);
+                  }}
                   className="absolute top-3 right-3 bg-white rounded-full p-1.5 shadow"
                 >
                   <Heart
@@ -88,7 +92,10 @@ function DestinationCards() {
                   <Button
                     size="sm"
                     className="bg-teal-600 hover:bg-teal-700 text-white"
-                    onClick={() => navigate("/destinations")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/destinations/${dest.id}`);
+                    }}
                   >
                     Book now
                   </Button>

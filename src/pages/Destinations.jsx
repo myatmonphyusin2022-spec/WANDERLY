@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { destinations } from "../data";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -27,6 +27,7 @@ function Destinations() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("All");
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const navigate = useNavigate();
 
   const query = searchParams.get("search") || "";
 
@@ -47,7 +48,7 @@ function Destinations() {
   });
 
   return (
-    <main className="py-16 px-6">
+    <main className="py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
@@ -115,13 +116,13 @@ function Destinations() {
         )}
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((dest) => (
             <Card
               key={dest.id}
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
+              className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              onClick={() => navigate(`/destinations/${dest.id}`)}
             >
-              {/* Image */}
               <div className="h-44 relative overflow-hidden">
                 <img
                   src={dest.image}
@@ -132,7 +133,10 @@ function Destinations() {
                   {dest.badge}
                 </Badge>
                 <button
-                  onClick={() => toggleWishlist(dest)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleWishlist(dest);
+                  }}
                   className="absolute top-3 right-3 bg-white rounded-full p-1.5 shadow"
                 >
                   <Heart
@@ -154,8 +158,6 @@ function Destinations() {
                 <p className="text-xs text-gray-500 mb-3 line-clamp-2">
                   {dest.description}
                 </p>
-
-                {/* Rating and duration */}
                 <div className="flex items-center gap-4 mb-3">
                   <span className="flex items-center gap-1 text-xs text-gray-500">
                     <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
@@ -166,7 +168,6 @@ function Destinations() {
                     {dest.duration}
                   </span>
                 </div>
-
                 <div className="flex justify-between items-center">
                   <span className="text-teal-600 font-bold">
                     from {dest.price}
@@ -174,7 +175,10 @@ function Destinations() {
                   <Button
                     size="sm"
                     className="bg-teal-600 hover:bg-teal-700 text-white"
-                    onClick={() => handleBookNow(dest)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleBookNow(dest);
+                    }}
                   >
                     Book now
                   </Button>

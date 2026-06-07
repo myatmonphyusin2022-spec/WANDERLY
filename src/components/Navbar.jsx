@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import DarkMode from "./DarkMode";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Menu, Plane, Mail, Lock, User, CheckCircle } from "../icons";
+import DarkMode from "./DarkMode";
 import { useWishlist } from "../context/WishlistContext";
 import { Heart } from "../icons";
 
@@ -16,14 +16,14 @@ function Navbar() {
   const [registerDone, setRegisterDone] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [registerError, setRegisterError] = useState("");
-  const { wishlist } = useWishlist();
-
   const [signInForm, setSignInForm] = useState({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState({
     name: "",
     email: "",
     password: "",
   });
+  const { wishlist } = useWishlist();
+  const location = useLocation();
 
   const handleSignIn = () => {
     if (!signInForm.email || !signInForm.password) {
@@ -43,74 +43,65 @@ function Navbar() {
     setRegisterDone(true);
   };
 
+  const navLinks = [
+    { label: "Home", path: "/" },
+    { label: "Destinations", path: "/destinations" },
+    { label: "Tours", path: "/tours" },
+    { label: "Contact", path: "/contact" },
+  ];
+
   return (
-    <nav className="bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-50">
+    <nav className="bg-background/80 backdrop-blur-md border-b border-border px-6 py-3 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link
           to="/"
           className="text-xl font-bold tracking-wide flex items-center gap-2"
         >
-          <Plane className="text-teal-600 w-5 h-5" />
+          <div className="bg-teal-600 rounded-lg p-1.5">
+            <Plane className="text-white w-4 h-4" />
+          </div>
           WANDER<span className="text-teal-600">LY</span>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex gap-8 list-none items-center">
-          <li>
-            <Link
-              to="/"
-              className="text-sm text-gray-500 hover:text-teal-600 transition"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/destinations"
-              className="text-sm text-gray-500 hover:text-teal-600 transition"
-            >
-              Destinations
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/tours"
-              className="text-sm text-gray-500 hover:text-teal-600 transition"
-            >
-              Tours
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="text-sm text-gray-500 hover:text-teal-600 transition"
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/wishlist"
-              className="relative flex items-center text-gray-500 hover:text-red-500 transition"
-            >
-              <Heart className="w-5 h-5" />
-              {wishlist.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {wishlist.length}
-                </span>
-              )}
-            </Link>
-          </li>
+        <ul className="hidden md:flex gap-1 list-none">
+          {navLinks.map((link) => (
+            <li key={link.path}>
+              <Link
+                to={link.path}
+                className={`text-sm px-4 py-2 rounded-lg transition ${
+                  location.pathname === link.path
+                    ? "bg-teal-50 text-teal-600 font-medium"
+                    : "text-gray-500 hover:text-teal-600 hover:bg-gray-50"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
-        {/* Desktop buttons */}
-        {/* Desktop buttons */}
-        <div className="hidden md:flex gap-3 items-center">
+        {/* Desktop right side */}
+        <div className="hidden md:flex gap-2 items-center">
           <DarkMode />
+
+          {/* Wishlist */}
+          <Link
+            to="/wishlist"
+            className="relative flex items-center justify-center w-9 h-9 rounded-lg hover:bg-gray-50 transition text-gray-500 hover:text-red-500"
+          >
+            <Heart className="w-5 h-5" />
+            {wishlist.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                {wishlist.length}
+              </span>
+            )}
+          </Link>
+
           <Button
-            variant="outline"
-            className="text-teal-600 border-teal-600 hover:bg-teal-50"
+            variant="ghost"
+            className="text-gray-600 hover:text-teal-600 text-sm"
             onClick={() => {
               setSignInOpen(true);
               setSignInDone(false);
@@ -120,7 +111,7 @@ function Navbar() {
             Sign in
           </Button>
           <Button
-            className="bg-teal-600 hover:bg-teal-700 text-white"
+            className="bg-teal-600 hover:bg-teal-700 text-white text-sm rounded-lg"
             onClick={() => {
               setGetStartedOpen(true);
               setRegisterDone(false);
@@ -138,67 +129,78 @@ function Navbar() {
               <Menu className="w-5 h-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-64">
+          <SheetContent side="right" className="w-72">
             <div className="flex flex-col gap-6 mt-10">
+              {/* Logo */}
               <Link
                 to="/"
                 className="text-xl font-bold tracking-wide flex items-center gap-2"
               >
-                <Plane className="text-teal-600 w-5 h-5" />
+                <div className="bg-teal-600 rounded-lg p-1.5">
+                  <Plane className="text-white w-4 h-4" />
+                </div>
                 WANDER<span className="text-teal-600">LY</span>
               </Link>
-              <Link
-                to="/"
-                className="text-sm text-gray-500 hover:text-teal-600"
-              >
-                Home
-              </Link>
-              <Link
-                to="/destinations"
-                className="text-sm text-gray-500 hover:text-teal-600"
-              >
-                Destinations
-              </Link>
-              <Link
-                to="/tours"
-                className="text-sm text-gray-500 hover:text-teal-600"
-              >
-                Tours
-              </Link>
-              <Link
-                to="/contact"
-                className="text-sm text-gray-500 hover:text-teal-600"
-              >
-                Contact
-              </Link>
 
-              {/* Dark mode toggle */}
+              {/* Links */}
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`text-sm px-4 py-2.5 rounded-lg transition ${
+                      location.pathname === link.path
+                        ? "bg-teal-50 text-teal-600 font-medium"
+                        : "text-gray-500 hover:text-teal-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/wishlist"
+                  className="text-sm px-4 py-2.5 rounded-lg text-gray-500 hover:text-teal-600 hover:bg-gray-50 flex items-center gap-2"
+                >
+                  <Heart className="w-4 h-4" />
+                  Wishlist
+                  {wishlist.length > 0 && (
+                    <span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center ml-auto">
+                      {wishlist.length}
+                    </span>
+                  )}
+                </Link>
+              </div>
+
+              {/* Dark mode */}
               <div className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2">
                 <span className="text-sm text-gray-500">Dark mode</span>
                 <DarkMode />
               </div>
 
-              <Button
-                variant="outline"
-                className="text-teal-600 border-teal-600 w-full"
-                onClick={() => {
-                  setSignInOpen(true);
-                  setSignInDone(false);
-                  setSignInError("");
-                }}
-              >
-                Sign in
-              </Button>
-              <Button
-                className="bg-teal-600 hover:bg-teal-700 text-white w-full"
-                onClick={() => {
-                  setGetStartedOpen(true);
-                  setRegisterDone(false);
-                  setRegisterError("");
-                }}
-              >
-                Get started
-              </Button>
+              {/* Buttons */}
+              <div className="flex flex-col gap-3">
+                <Button
+                  variant="outline"
+                  className="text-teal-600 border-teal-600 w-full"
+                  onClick={() => {
+                    setSignInOpen(true);
+                    setSignInDone(false);
+                    setSignInError("");
+                  }}
+                >
+                  Sign in
+                </Button>
+                <Button
+                  className="bg-teal-600 hover:bg-teal-700 text-white w-full"
+                  onClick={() => {
+                    setGetStartedOpen(true);
+                    setRegisterDone(false);
+                    setRegisterError("");
+                  }}
+                >
+                  Get started
+                </Button>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
@@ -209,7 +211,9 @@ function Navbar() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
-              <Plane className="text-teal-600 w-5 h-5" />
+              <div className="bg-teal-600 rounded-lg p-1.5">
+                <Plane className="text-white w-4 h-4" />
+              </div>
               Sign in to Wanderly
             </DialogTitle>
           </DialogHeader>
@@ -291,7 +295,9 @@ function Navbar() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
-              <Plane className="text-teal-600 w-5 h-5" />
+              <div className="bg-teal-600 rounded-lg p-1.5">
+                <Plane className="text-white w-4 h-4" />
+              </div>
               Create your account
             </DialogTitle>
           </DialogHeader>

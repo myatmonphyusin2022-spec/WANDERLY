@@ -224,6 +224,48 @@ function DestinationDetail() {
       </div>
 
       {/* Booking Dialog */}
+      {/* Similar destinations */}
+      {destinations.filter((d) => d.id !== dest.id && d.region === dest.region)
+        .length > 0 && (
+        <div className="max-w-6xl mx-auto px-4 md:px-6 mt-12 mb-8">
+          <h2 className="text-xl font-bold mb-6">You might also like</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {destinations
+              .filter((d) => d.id !== dest.id && d.region === dest.region)
+              .slice(0, 3)
+              .map((d) => (
+                <Card
+                  key={d.id}
+                  className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                  onClick={() => navigate(`/destinations/${d.id}`)}
+                >
+                  <div className="h-40 overflow-hidden">
+                    <img
+                      src={d.image}
+                      alt={d.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-sm mb-1">{d.name}</h3>
+                    <p className="text-xs text-gray-400 flex items-center gap-1 mb-2">
+                      <MapPin className="w-3 h-3" />
+                      {d.region}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-teal-600 font-bold text-sm">
+                        from {d.price}
+                      </span>
+                      <Badge className="bg-teal-600 text-white text-xs">
+                        {d.badge}
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+        </div>
+      )}
       <BookingDialog
         open={bookingOpen}
         onClose={() => setBookingOpen(false)}

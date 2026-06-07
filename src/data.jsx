@@ -439,6 +439,8 @@ export const tours = [
       "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&auto=format&fit=crop",
     bg: "bg-teal-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
+    description:
+      "Explore the magic of Bali with temple visits, rice terraces and beach adventures.",
   },
   {
     id: 2,
@@ -451,6 +453,8 @@ export const tours = [
       "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&auto=format&fit=crop",
     bg: "bg-indigo-50",
     includes: ["Hotel", "Flights", "Guide", "Breakfast"],
+    description:
+      "Fall in love with Paris — Eiffel Tower, Louvre, fine dining and fashion.",
   },
   {
     id: 3,
@@ -463,5 +467,91 @@ export const tours = [
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop",
     bg: "bg-orange-50",
     includes: ["Hotel", "Flights", "Guide", "Meals"],
+    description:
+      "Experience the glamour of Dubai with desert safari, Burj Khalifa and luxury malls.",
+  },
+  {
+    id: 4,
+    name: "Tokyo Explorer",
+    duration: "8 days",
+    groupSize: "10 people",
+    price: "$1,300",
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&auto=format&fit=crop",
+    bg: "bg-pink-50",
+    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
+    description:
+      "Discover the neon lights, ancient temples and world-class cuisine of Tokyo.",
+  },
+  {
+    id: 5,
+    name: "Santorini Romance",
+    duration: "6 days",
+    groupSize: "8 people",
+    price: "$1,400",
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop",
+    bg: "bg-green-50",
+    includes: ["Villa", "Flights", "Guide", "Breakfast"],
+    description:
+      "Watch the world's most beautiful sunsets from Oia and explore blue-domed churches.",
+  },
+  {
+    id: 6,
+    name: "Maldives Paradise",
+    duration: "7 days",
+    groupSize: "6 people",
+    price: "$2,100",
+    rating: 5.0,
+    image:
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&auto=format&fit=crop",
+    bg: "bg-cyan-50",
+    includes: ["Overwater Villa", "Flights", "Snorkeling", "All Meals"],
+    description:
+      "Stay in luxury overwater bungalows above crystal clear turquoise lagoons.",
+  },
+  {
+    id: 7,
+    name: "Barcelona City Break",
+    duration: "5 days",
+    groupSize: "12 people",
+    price: "$1,100",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&auto=format&fit=crop",
+    bg: "bg-yellow-50",
+    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
+    description:
+      "Explore Gaudí's masterpieces, tapas bars and beautiful beaches of Barcelona.",
+  },
+  {
+    id: 8,
+    name: "Cape Town Safari",
+    duration: "7 days",
+    groupSize: "10 people",
+    price: "$1,250",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&auto=format&fit=crop",
+    bg: "bg-rose-50",
+    includes: ["Hotel", "Flights", "Safari", "Breakfast"],
+    description:
+      "Climb Table Mountain, visit Cape of Good Hope and enjoy world-class wine estates.",
+  },
+  {
+    id: 9,
+    name: "Rome Eternal City",
+    duration: "5 days",
+    groupSize: "12 people",
+    price: "$1,050",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&auto=format&fit=crop",
+    bg: "bg-amber-50",
+    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
+    description:
+      "Walk through the Colosseum, toss a coin in Trevi Fountain and eat heavenly pasta.",
   },
 ];

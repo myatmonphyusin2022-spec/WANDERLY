@@ -8,6 +8,7 @@ import { Menu, Plane, Mail, Lock, User, CheckCircle } from "../icons";
 import DarkMode from "./DarkMode";
 import { useWishlist } from "../context/WishlistContext";
 import { Heart } from "../icons";
+import { useCurrency, currencies } from "../context/CurrencyContext";
 
 function Navbar() {
   const [signInOpen, setSignInOpen] = useState(false);
@@ -16,6 +17,7 @@ function Navbar() {
   const [registerDone, setRegisterDone] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [registerError, setRegisterError] = useState("");
+  const { currency, setCurrency } = useCurrency();
   const [signInForm, setSignInForm] = useState({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState({
     name: "",
@@ -84,6 +86,20 @@ function Navbar() {
 
         {/* Desktop right side */}
         <div className="hidden md:flex gap-2 items-center">
+          {/* Currency selector */}
+          <select
+            value={currency.code}
+            onChange={(e) =>
+              setCurrency(currencies.find((c) => c.code === e.target.value))
+            }
+            className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 outline-none focus:border-teal-600 transition bg-background text-foreground cursor-pointer"
+          >
+            {currencies.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.symbol} {c.code}
+              </option>
+            ))}
+          </select>
           <DarkMode />
 
           {/* Wishlist */}
@@ -169,6 +185,25 @@ function Navbar() {
                     </span>
                   )}
                 </Link>
+              </div>
+              {/* Currency selector mobile */}
+              <div className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2">
+                <span className="text-sm text-gray-500">Currency</span>
+                <select
+                  value={currency.code}
+                  onChange={(e) =>
+                    setCurrency(
+                      currencies.find((c) => c.code === e.target.value),
+                    )
+                  }
+                  className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 outline-none focus:border-teal-600 bg-background text-foreground cursor-pointer"
+                >
+                  {currencies.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.symbol} {c.code}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Dark mode */}

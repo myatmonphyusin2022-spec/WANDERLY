@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { tours } from "../data";
-import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Star, Clock, Users, CheckCircle, ArrowRight } from "../icons";
 import BookingDialog from "../components/BookingDialog";
+import { useNavigate } from "react-router-dom";
 
 function Tours() {
   const [selected, setSelected] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
+  const navigate = useNavigate();
 
   const handleBookNow = (tour) => {
     setSelectedTour({
@@ -31,8 +32,8 @@ function Tours() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-xs tracking-widest uppercase text-teal-600 mb-2">
-            Our packages
+          <p className="text-xs tracking-widest uppercase text-teal-600 mb-2 font-medium">
+            🗺️ Our packages
           </p>
           <h1 className="text-3xl md:text-4xl font-bold mb-3">Tour Packages</h1>
           <p className="text-gray-400 text-sm max-w-md mx-auto">
@@ -42,56 +43,66 @@ function Tours() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {tours.map((tour) => (
-            <Card
+            <div
               key={tour.id}
-              className={`overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer border-2 ${
-                selected === tour.id ? "border-teal-600" : "border-transparent"
-              }`}
-              onClick={() => setSelected(tour.id)}
+              className="group cursor-pointer"
+              onClick={() => navigate(`/tours/${tour.id}`)}
             >
-              {/* Image */}
-              <div className="h-48 md:h-44 relative overflow-hidden">
+              {/* Image container */}
+              <div
+                className={`relative h-56 md:h-64 rounded-2xl overflow-hidden mb-4 border-2 transition-all duration-300 ${
+                  selected === tour.id
+                    ? "border-teal-600"
+                    : "border-transparent"
+                }`}
+              >
                 <img
                   src={tour.image}
                   alt={tour.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
                 {selected === tour.id && (
                   <Badge className="absolute top-3 right-3 bg-teal-600 text-white">
                     Selected ✓
                   </Badge>
                 )}
+
+                {/* Bottom info on image */}
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                  <div>
+                    <h3 className="font-bold text-white text-lg leading-tight">
+                      {tour.name}
+                    </h3>
+                    <div className="flex items-center gap-3 mt-1">
+                      <span className="flex items-center gap-1 text-white/70 text-xs">
+                        <Clock className="w-3 h-3" />
+                        {tour.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-white/70 text-xs">
+                        <Users className="w-3 h-3" />
+                        {tour.groupSize}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <p className="text-white font-bold text-sm">{tour.price}</p>
+                  </div>
+                </div>
               </div>
 
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-base mb-2">{tour.name}</h3>
-
-                {/* Description */}
+              {/* Info below image */}
+              <div className="px-1">
                 <p className="text-xs text-gray-500 mb-3 line-clamp-2">
                   {tour.description}
                 </p>
 
-                {/* Details */}
-                <div className="flex items-center gap-3 mb-3 flex-wrap">
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
-                    <Clock className="w-3 h-3 text-teal-600" />
-                    {tour.duration}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
-                    <Users className="w-3 h-3 text-teal-600" />
-                    {tour.groupSize}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
-                    <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                    {tour.rating}
-                  </span>
-                </div>
-
                 {/* Includes */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {tour.includes.map((item, i) => (
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {tour.includes.slice(0, 3).map((item, i) => (
                     <span
                       key={i}
                       className="flex items-center gap-1 text-xs bg-teal-50 text-teal-600 px-2 py-1 rounded-full"
@@ -102,24 +113,38 @@ function Tours() {
                   ))}
                 </div>
 
-                <div className="flex justify-between items-center">
-                  <span className="text-teal-600 font-bold">
-                    from {tour.price}
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1 text-xs text-gray-500">
+                    <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                    {tour.rating}
                   </span>
-                  <Button
-                    size="sm"
-                    className="bg-teal-600 hover:bg-teal-700 text-white gap-1"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleBookNow(tour);
-                    }}
-                  >
-                    Book now
-                    <ArrowRight className="w-3 h-3" />
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-teal-600 border-teal-600 rounded-lg text-xs"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelected(tour.id);
+                      }}
+                    >
+                      Select
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs gap-1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleBookNow(tour);
+                      }}
+                    >
+                      Book now
+                      <ArrowRight className="w-3 h-3" />
+                    </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 

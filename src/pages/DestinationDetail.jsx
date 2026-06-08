@@ -43,13 +43,13 @@ function DestinationDetail() {
   return (
     <main className="pb-16">
       {/* Hero image */}
-      <div className="relative h-64 md:h-96 overflow-hidden">
+      <div className="relative h-72 md:h-[500px] overflow-hidden">
         <img
           src={dest.image}
           alt={dest.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/80" />
 
         {/* Back button */}
         <button
@@ -63,7 +63,7 @@ function DestinationDetail() {
         {/* Wishlist button */}
         <button
           onClick={() => toggleWishlist(dest)}
-          className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg"
+          className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-lg hover:scale-110 transition-transform"
         >
           <Heart
             className={`w-5 h-5 transition ${
@@ -75,62 +75,41 @@ function DestinationDetail() {
         </button>
 
         {/* Hero content */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-          <Badge className="bg-teal-600 text-white mb-3">{dest.badge}</Badge>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
-            {dest.name}
-          </h1>
-          <p className="text-white/80 flex items-center gap-1 text-sm">
-            <MapPin className="w-4 h-4" />
-            {dest.region}
-          </p>
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+          <div className="max-w-6xl mx-auto">
+            <Badge className="bg-teal-600 text-white mb-3">{dest.badge}</Badge>
+            <h1 className="text-3xl md:text-6xl font-bold text-white mb-2">
+              {dest.name}
+            </h1>
+            <p className="text-white/70 flex items-center gap-1 text-sm mb-4">
+              <MapPin className="w-4 h-4" />
+              {dest.region}
+            </p>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1 text-white/80 text-sm">
+                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                {dest.rating} ({dest.reviews} reviews)
+              </span>
+              <span className="flex items-center gap-1 text-white/80 text-sm">
+                <Clock className="w-4 h-4" />
+                {dest.duration}
+              </span>
+              <span className="flex items-center gap-1 text-white/80 text-sm">
+                <Users className="w-4 h-4" />
+                Max 12 people
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6 mt-8">
-        {/* Quick info */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          <Card>
-            <CardContent className="p-4 flex flex-col gap-1">
-              <p className="text-xs text-gray-400">Rating</p>
-              <p className="font-semibold flex items-center gap-1">
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                {dest.rating} ({dest.reviews})
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 flex flex-col gap-1">
-              <p className="text-xs text-gray-400">Duration</p>
-              <p className="font-semibold flex items-center gap-1">
-                <Clock className="w-4 h-4 text-teal-600" />
-                {dest.duration}
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 flex flex-col gap-1">
-              <p className="text-xs text-gray-400">Group size</p>
-              <p className="font-semibold flex items-center gap-1">
-                <Users className="w-4 h-4 text-teal-600" />
-                Max 12
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 flex flex-col gap-1">
-              <p className="text-xs text-gray-400">Price</p>
-              <p className="font-semibold text-teal-600">from {dest.price}</p>
-            </CardContent>
-          </Card>
-        </div>
-
+      <div className="max-w-6xl mx-auto px-4 md:px-6 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left content */}
-          <div className="lg:col-span-2 flex flex-col gap-8">
+          <div className="lg:col-span-2 flex flex-col gap-10">
             {/* Description */}
             <div>
-              <h2 className="text-xl font-bold mb-3">About {dest.name}</h2>
+              <h2 className="text-2xl font-bold mb-4">About {dest.name}</h2>
               <p className="text-gray-500 text-sm leading-relaxed">
                 {dest.description}
               </p>
@@ -138,14 +117,17 @@ function DestinationDetail() {
 
             {/* Why famous */}
             <div>
-              <h2 className="text-xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-6">
                 Why {dest.name.split(",")[0]} is so famous
               </h2>
-              <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {dest.famous.map((fact, i) => (
-                  <div key={i} className="flex items-start gap-3">
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 bg-teal-50 rounded-2xl p-4"
+                  >
                     <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-500">{fact}</p>
+                    <p className="text-sm text-gray-600">{fact}</p>
                   </div>
                 ))}
               </div>
@@ -153,15 +135,19 @@ function DestinationDetail() {
 
             {/* Highlights */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Top Highlights</h2>
-              <div className="grid grid-cols-2 gap-3">
+              <h2 className="text-2xl font-bold mb-6">Top Highlights</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {dest.highlights.map((highlight, i) => (
                   <div
                     key={i}
-                    className="bg-teal-50 rounded-xl px-4 py-3 text-sm font-medium text-teal-700 flex items-center gap-2"
+                    className="relative h-24 rounded-2xl overflow-hidden group cursor-pointer"
+                    style={{ background: `hsl(${i * 60 + 160}, 40%, 85%)` }}
                   >
-                    <ArrowRight className="w-4 h-4" />
-                    {highlight}
+                    <div className="absolute inset-0 flex items-center justify-center p-3">
+                      <p className="text-sm font-semibold text-center text-gray-700">
+                        {highlight}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -170,17 +156,15 @@ function DestinationDetail() {
 
           {/* Right sidebar */}
           <div className="flex flex-col gap-6">
-            {/* Booking card */}
-            <Card className="sticky top-24">
-              <CardContent className="p-6 flex flex-col gap-4">
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">Starting from</p>
-                  <p className="text-3xl font-bold text-teal-600">
-                    {dest.price}
-                  </p>
-                  <p className="text-xs text-gray-400">per person</p>
-                </div>
+            <Card className="sticky top-24 shadow-lg border-0 overflow-hidden">
+              {/* Price header */}
+              <div className="bg-teal-600 p-6">
+                <p className="text-teal-100 text-xs mb-1">Starting from</p>
+                <p className="text-4xl font-bold text-white">{dest.price}</p>
+                <p className="text-teal-100 text-xs mt-1">per person</p>
+              </div>
 
+              <CardContent className="p-6 flex flex-col gap-4">
                 {/* Includes */}
                 <div>
                   <p className="text-sm font-semibold mb-3">What's included</p>
@@ -198,7 +182,7 @@ function DestinationDetail() {
                 </div>
 
                 <Button
-                  className="bg-teal-600 hover:bg-teal-700 text-white w-full gap-2"
+                  className="bg-teal-600 hover:bg-teal-700 text-white w-full gap-2 rounded-xl"
                   onClick={() => setBookingOpen(true)}
                 >
                   Book now
@@ -207,7 +191,7 @@ function DestinationDetail() {
 
                 <Button
                   variant="outline"
-                  className="w-full text-teal-600 border-teal-600"
+                  className="w-full border-teal-600 text-teal-600 rounded-xl"
                   onClick={() => toggleWishlist(dest)}
                 >
                   <Heart
@@ -221,51 +205,55 @@ function DestinationDetail() {
             </Card>
           </div>
         </div>
+
+        {/* Similar destinations */}
+        {destinations.filter(
+          (d) => d.id !== dest.id && d.region === dest.region,
+        ).length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6">You might also like</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {destinations
+                .filter((d) => d.id !== dest.id && d.region === dest.region)
+                .slice(0, 3)
+                .map((d) => (
+                  <div
+                    key={d.id}
+                    className="group cursor-pointer"
+                    onClick={() => navigate(`/destinations/${d.id}`)}
+                  >
+                    <div className="relative h-48 rounded-2xl overflow-hidden mb-3">
+                      <img
+                        src={d.image}
+                        alt={d.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                        <div>
+                          <h3 className="font-bold text-white text-base">
+                            {d.name}
+                          </h3>
+                          <p className="text-white/70 text-xs flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            {d.region}
+                          </p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
+                          <p className="text-white font-bold text-sm">
+                            {d.price}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Booking Dialog */}
-      {/* Similar destinations */}
-      {destinations.filter((d) => d.id !== dest.id && d.region === dest.region)
-        .length > 0 && (
-        <div className="max-w-6xl mx-auto px-4 md:px-6 mt-12 mb-8">
-          <h2 className="text-xl font-bold mb-6">You might also like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {destinations
-              .filter((d) => d.id !== dest.id && d.region === dest.region)
-              .slice(0, 3)
-              .map((d) => (
-                <Card
-                  key={d.id}
-                  className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                  onClick={() => navigate(`/destinations/${d.id}`)}
-                >
-                  <div className="h-40 overflow-hidden">
-                    <img
-                      src={d.image}
-                      alt={d.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-sm mb-1">{d.name}</h3>
-                    <p className="text-xs text-gray-400 flex items-center gap-1 mb-2">
-                      <MapPin className="w-3 h-3" />
-                      {d.region}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-teal-600 font-bold text-sm">
-                        from {d.price}
-                      </span>
-                      <Badge className="bg-teal-600 text-white text-xs">
-                        {d.badge}
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-          </div>
-        </div>
-      )}
       <BookingDialog
         open={bookingOpen}
         onClose={() => setBookingOpen(false)}

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { destinations } from "../data";
-import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -33,11 +32,6 @@ function Destinations() {
 
   const handleSearch = (value) => {
     setSearchParams({ search: value });
-  };
-
-  const handleBookNow = (dest) => {
-    setSelectedDest(dest);
-    setBookingOpen(true);
   };
 
   const filtered = destinations.filter((d) => {
@@ -116,28 +110,32 @@ function Destinations() {
         )}
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filtered.map((dest) => (
-            <Card
+            <div
               key={dest.id}
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              className="group cursor-pointer"
               onClick={() => navigate(`/destinations/${dest.id}`)}
             >
-              <div className="h-44 relative overflow-hidden">
+              {/* Image container */}
+              <div className="relative h-56 md:h-64 rounded-2xl overflow-hidden mb-4">
                 <img
                   src={dest.image}
                   alt={dest.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
                 <Badge className="absolute top-3 left-3 bg-teal-600 text-white">
                   {dest.badge}
                 </Badge>
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleWishlist(dest);
                   }}
-                  className="absolute top-3 right-3 bg-white rounded-full p-1.5 shadow"
+                  className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow hover:scale-110 transition-transform"
                 >
                   <Heart
                     className={`w-4 h-4 transition ${
@@ -147,44 +145,52 @@ function Destinations() {
                     }`}
                   />
                 </button>
+
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                  <div>
+                    <h3 className="font-bold text-white text-lg leading-tight">
+                      {dest.name}
+                    </h3>
+                    <p className="text-white/70 text-xs flex items-center gap-1 mt-0.5">
+                      <MapPin className="w-3 h-3" />
+                      {dest.region}
+                    </p>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <p className="text-white font-bold text-sm">{dest.price}</p>
+                  </div>
+                </div>
               </div>
 
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-base mb-1">{dest.name}</h3>
-                <p className="text-xs text-gray-400 flex items-center gap-1 mb-2">
-                  <MapPin className="w-3 h-3" />
-                  {dest.region}
-                </p>
+              {/* Info below image */}
+              <div className="px-1">
                 <p className="text-xs text-gray-500 mb-3 line-clamp-2">
                   {dest.description}
                 </p>
-                <div className="flex items-center gap-4 mb-3">
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
-                    <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                    {dest.rating} ({dest.reviews})
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
-                    <Clock className="w-3 h-3 text-teal-600" />
-                    {dest.duration}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-teal-600 font-bold">
-                    from {dest.price}
-                  </span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1 text-xs text-gray-500">
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                      {dest.rating} ({dest.reviews})
+                    </span>
+                    <span className="flex items-center gap-1 text-xs text-gray-500">
+                      <Clock className="w-3 h-3 text-teal-600" />
+                      {dest.duration}
+                    </span>
+                  </div>
                   <Button
                     size="sm"
-                    className="bg-teal-600 hover:bg-teal-700 text-white"
+                    className="bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleBookNow(dest);
+                      navigate(`/destinations/${dest.id}`);
                     }}
                   >
-                    Book now
+                    View details
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 

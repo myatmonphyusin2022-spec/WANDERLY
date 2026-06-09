@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { MapPin, Search, Star, Clock, Heart, X } from "../icons";
 import BookingDialog from "../components/BookingDialog";
+import { useCurrency } from "../context/CurrencyContext";
 import { useWishlist } from "../context/WishlistContext";
 
 const regions = [
@@ -26,6 +27,7 @@ function Destinations() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("All");
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const { convert } = useCurrency();
   const navigate = useNavigate();
 
   const query = searchParams.get("search") || "";
@@ -157,7 +159,9 @@ function Destinations() {
                     </p>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <p className="text-white font-bold text-sm">{dest.price}</p>
+                    <p className="text-white font-bold text-sm">
+                      {convert(dest.price)}
+                    </p>
                   </div>
                 </div>
               </div>

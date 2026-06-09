@@ -4,10 +4,12 @@ import { MapPin, Star, Clock, Heart, ArrowRight } from "../icons";
 import { destinations } from "../data";
 import { useWishlist } from "../context/WishlistContext";
 import { useNavigate } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 function DestinationCards() {
   const { toggleWishlist, isWishlisted } = useWishlist();
   const navigate = useNavigate();
+  const { convert } = useCurrency();
 
   return (
     <section className="py-16 md:py-20 px-4 md:px-6">
@@ -83,7 +85,9 @@ function DestinationCards() {
                     </p>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <p className="text-white font-bold text-sm">{dest.price}</p>
+                    <p className="text-white font-bold text-sm">
+                      {convert(dest.price)}
+                    </p>
                   </div>
                 </div>
               </div>

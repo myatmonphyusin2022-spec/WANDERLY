@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { tours } from "../data";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { useCurrency } from "../context/CurrencyContext";
 import {
   Star,
   Clock,
@@ -18,6 +19,7 @@ import { useWishlist } from "../context/WishlistContext";
 function TourDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { convert } = useCurrency();
   const { toggleWishlist, isWishlisted } = useWishlist();
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -269,7 +271,7 @@ function TourDetail() {
                       </div>
                       <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
                         <p className="text-white font-bold text-sm">
-                          {t.price}
+                          {convert(tour.price)}
                         </p>
                       </div>
                     </div>

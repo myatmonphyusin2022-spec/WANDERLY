@@ -16,11 +16,13 @@ import {
 } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useWishlist } from "../context/WishlistContext";
+import { useCurrency } from "../context/CurrencyContext";
 
 function DestinationDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const { convert } = useCurrency();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const dest = destinations.find((d) => d.id === parseInt(id));
@@ -160,7 +162,7 @@ function DestinationDetail() {
               {/* Price header */}
               <div className="bg-teal-600 p-6">
                 <p className="text-teal-100 text-xs mb-1">Starting from</p>
-                <p className="text-4xl font-bold text-white">{dest.price}</p>
+                <p className="text-4xl font-bold text-white">{convert(dest.price)}</p>
                 <p className="text-teal-100 text-xs mt-1">per person</p>
               </div>
 

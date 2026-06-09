@@ -5,12 +5,14 @@ import { Button } from "../components/ui/button";
 import { Star, Clock, Users, CheckCircle, ArrowRight } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useNavigate } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 function Tours() {
   const [selected, setSelected] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
   const navigate = useNavigate();
+  const { convert } = useCurrency();
 
   const handleBookNow = (tour) => {
     setSelectedTour({
@@ -89,7 +91,9 @@ function Tours() {
                     </div>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <p className="text-white font-bold text-sm">{tour.price}</p>
+                    <p className="text-white font-bold text-sm">
+                      {convert(tour.price)}
+                    </p>
                   </div>
                 </div>
               </div>

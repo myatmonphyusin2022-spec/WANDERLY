@@ -7,11 +7,13 @@ import { MapPin, Star, Clock, Heart, ArrowRight } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useNavigate } from "react-router-dom";
 
+import { useCurrency } from "../context/CurrencyContext";
 function Wishlist() {
   const { wishlist, toggleWishlist, isWishlisted } = useWishlist();
   const [selectedDest, setSelectedDest] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const navigate = useNavigate();
+  const { convert } = useCurrency();
 
   const handleBookNow = (dest) => {
     setSelectedDest(dest);
@@ -118,7 +120,7 @@ function Wishlist() {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-teal-600 font-bold">
-                        from {dest.price}
+                        from {convert(dest.price)}
                       </span>
                       <Button
                         size="sm"

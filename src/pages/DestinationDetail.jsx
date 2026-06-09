@@ -15,8 +15,8 @@ import {
   ArrowLeft,
 } from "../icons";
 import BookingDialog from "../components/BookingDialog";
-import { useWishlist } from "../context/WishlistContext";
 import { useCurrency } from "../context/CurrencyContext";
+import { useWishlist } from "../context/WishlistContext";
 
 function DestinationDetail() {
   const { id } = useParams();
@@ -162,7 +162,9 @@ function DestinationDetail() {
               {/* Price header */}
               <div className="bg-teal-600 p-6">
                 <p className="text-teal-100 text-xs mb-1">Starting from</p>
-                <p className="text-4xl font-bold text-white">{convert(dest.price)}</p>
+                <p className="text-4xl font-bold text-white">
+                  {convert(dest.price)}
+                </p>
                 <p className="text-teal-100 text-xs mt-1">per person</p>
               </div>
 
@@ -243,7 +245,7 @@ function DestinationDetail() {
                         </div>
                         <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
                           <p className="text-white font-bold text-sm">
-                            {d.price}
+                            {convert(d.price)}
                           </p>
                         </div>
                       </div>

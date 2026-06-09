@@ -13,6 +13,7 @@ import {
   Phone,
   Calendar,
 } from "../icons";
+import { useCurrency } from "../context/CurrencyContext";
 
 function BookingDialog({ open, onClose, destination }) {
   const [step, setStep] = useState(1);
@@ -23,6 +24,7 @@ function BookingDialog({ open, onClose, destination }) {
     date: "",
     travelers: "1",
   });
+  const { convert } = useCurrency();
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -94,7 +96,7 @@ function BookingDialog({ open, onClose, destination }) {
                 {destination.rating} ({destination.reviews} reviews)
               </p>
               <p className="text-teal-600 font-bold mt-1">
-                from {destination.price}
+                from {convert(destination.price)}
               </p>
             </div>
 
@@ -192,9 +194,14 @@ function BookingDialog({ open, onClose, destination }) {
               <p className="text-xs text-gray-400">🌍 {destination.name}</p>
               <p className="text-xs text-gray-400">⏱ {destination.duration}</p>
               <p className="text-teal-600 font-bold text-sm mt-1">
-                Total: {destination.price} × {form.travelers} = $
-                {parseInt(destination.price.replace("$", "").replace(",", "")) *
-                  parseInt(form.travelers)}
+                Total: {convert(destination.price)} × {form.travelers} ={" "}
+                {convert(
+                  String(
+                    parseInt(
+                      destination.price.replace("$", "").replace(",", ""),
+                    ) * parseInt(form.travelers),
+                  ),
+                )}
               </p>
             </div>
 
@@ -246,9 +253,14 @@ function BookingDialog({ open, onClose, destination }) {
                 ⏱ Duration: {destination.duration}
               </p>
               <p className="text-teal-600 font-bold text-sm mt-1">
-                Total paid: $
-                {parseInt(destination.price.replace("$", "").replace(",", "")) *
-                  parseInt(form.travelers)}
+                Total paid: {convert(destination.price)} × {form.travelers} ={" "}
+                {convert(
+                  String(
+                    parseInt(
+                      destination.price.replace("$", "").replace(",", ""),
+                    ) * parseInt(form.travelers),
+                  ),
+                )}
               </p>
             </div>
             <Button

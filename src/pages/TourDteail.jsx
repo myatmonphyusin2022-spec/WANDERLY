@@ -172,7 +172,7 @@ function TourDetail() {
               {/* Price header */}
               <div className="bg-teal-600 p-6">
                 <p className="text-teal-100 text-xs mb-1">Starting from</p>
-                <p className="text-4xl font-bold text-white">{tour.price}</p>
+               <p className="text-white font-bold text-sm">{convert(tour.price)}</p>
                 <p className="text-teal-100 text-xs mt-1">per person</p>
               </div>
 

@@ -5,7 +5,7 @@ import { destinations } from "../data";
 import { useWishlist } from "../context/WishlistContext";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
-
+import AnimatedCard from './AnimatedCard'
 function DestinationCards() {
   const { toggleWishlist, isWishlisted } = useWishlist();
   const navigate = useNavigate();
@@ -34,13 +34,16 @@ function DestinationCards() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {destinations.slice(0, 3).map((dest) => (
-            <div
-              key={dest.id}
-              className="group cursor-pointer"
-              onClick={() => navigate(`/destinations/${dest.id}`)}
-            >
+       {destinations.slice(0, 3).map((dest, index) => (
+  <AnimatedCard key={dest.id} delay={index * 0.1}>
+    <div
+      className="group cursor-pointer"
+      onClick={() => navigate(`/destinations/${dest.id}`)}
+    >
+      {/* rest of card code stays the same */}
+    </div>
+  </AnimatedCard>
+))}
               {/* Image container */}
               <div className="relative h-56 md:h-64 rounded-2xl overflow-hidden mb-4">
                 <img

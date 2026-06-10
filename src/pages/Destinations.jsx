@@ -20,7 +20,7 @@ const regions = [
   "Australia",
   "South America",
 ];
-
+import AnimatedCard from '../components/AnimatedCard'
 function Destinations() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedDest, setSelectedDest] = useState(null);
@@ -113,13 +113,16 @@ function Destinations() {
         )}
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filtered.map((dest) => (
-            <div
-              key={dest.id}
-              className="group cursor-pointer"
-              onClick={() => navigate(`/destinations/${dest.id}`)}
-            >
+       {filtered.map((dest, index) => (
+  <AnimatedCard key={dest.id} delay={index * 0.05}>
+    <div
+      className="group cursor-pointer"
+      onClick={() => navigate(`/destinations/${dest.id}`)}
+    >
+      {/* rest of card code stays the same */}
+    </div>
+  </AnimatedCard>
+))}
               {/* Image container */}
               <div className="relative h-56 md:h-64 rounded-2xl overflow-hidden mb-4">
                 <img

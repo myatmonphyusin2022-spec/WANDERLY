@@ -7,6 +7,7 @@ import BookingDialog from "../components/BookingDialog";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 import PageTransition from "../components/PageTransition";
+import AnimatedCard from '../components/AnimatedCard'
 function Tours() {
   const [selected, setSelected] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -46,13 +47,16 @@ function Tours() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {tours.map((tour) => (
-            <div
-              key={tour.id}
-              className="group cursor-pointer"
-              onClick={() => navigate(`/tours/${tour.id}`)}
-            >
+        {tours.map((tour, index) => (
+  <AnimatedCard key={tour.id} delay={index * 0.05}>
+    <div
+      className="group cursor-pointer"
+      onClick={() => navigate(`/tours/${tour.id}`)}
+    >
+      {/* rest of card code stays the same */}
+    </div>
+  </AnimatedCard>
+))}
               {/* Image container */}
               <div
                 className={`relative h-56 md:h-64 rounded-2xl overflow-hidden mb-4 border-2 transition-all duration-300 ${

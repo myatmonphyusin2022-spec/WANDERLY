@@ -9,6 +9,11 @@ export const destinations = [
     duration: "7 days",
     image:
       "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-teal-50",
     badge: "Trending",
     description:
@@ -43,6 +48,11 @@ export const destinations = [
     duration: "5 days",
     image:
       "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-indigo-50",
     badge: "Popular",
     description:
@@ -77,6 +87,11 @@ export const destinations = [
     duration: "6 days",
     image:
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547475901-d1fc538f8e65?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-orange-50",
     badge: "New",
     description:
@@ -111,6 +126,11 @@ export const destinations = [
     duration: "8 days",
     image:
       "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1570521462033-3015e76e7432?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-pink-50",
     badge: "Trending",
     description:
@@ -145,6 +165,11 @@ export const destinations = [
     duration: "5 days",
     image:
       "https://images.unsplash.com/photo-1522083165195-3424ed129620?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1522083165195-3424ed129620?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-blue-50",
     badge: "Popular",
     description:
@@ -179,6 +204,11 @@ export const destinations = [
     duration: "6 days",
     image:
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-green-50",
     badge: "New",
     description:
@@ -213,6 +243,11 @@ export const destinations = [
     duration: "7 days",
     image:
       "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541480601022-2308c0f02487?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-cyan-50",
     badge: "Trending",
     description:
@@ -247,6 +282,11 @@ export const destinations = [
     duration: "5 days",
     image:
       "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-yellow-50",
     badge: "Popular",
     description:
@@ -276,6 +316,11 @@ export const destinations = [
     duration: "7 days",
     image:
       "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522002284372-8e7b0ad7e0c6?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-rose-50",
     badge: "New",
     description:
@@ -310,6 +355,11 @@ export const destinations = [
     duration: "5 days",
     image:
       "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-amber-50",
     badge: "Popular",
     description:
@@ -339,6 +389,11 @@ export const destinations = [
     duration: "8 days",
     image:
       "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534235826754-0a3572d1d6d5?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524820801657-fd59673b521a?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-sky-50",
     badge: "Trending",
     description:
@@ -373,6 +428,11 @@ export const destinations = [
     duration: "9 days",
     image:
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=800&auto=format&fit=crop",
+    ],
     bg: "bg-lime-50",
     badge: "New",
     description:
@@ -391,167 +451,5 @@ export const destinations = [
       "Train Transfer",
     ],
     highlights: ["Machu Picchu", "Inca Trail", "Sacred Valley", "Cusco City"],
-  },
-];
-
-export const features = [
-  {
-    id: 1,
-    title: "Safe & trusted",
-    desc: "All tours are verified and fully insured for your peace of mind.",
-    icon: "Shield",
-  },
-  {
-    id: 2,
-    title: "Best price guarantee",
-    desc: "We match any lower price you find, no questions asked.",
-    icon: "DollarSign",
-  },
-  {
-    id: 3,
-    title: "24/7 support",
-    desc: "Our team is always available before and during your trip.",
-    icon: "Headphones",
-  },
-  {
-    id: 4,
-    title: "Custom itineraries",
-    desc: "We build personalized travel plans that fit your style and budget.",
-    icon: "Map",
-  },
-];
-
-export const stats = [
-  { id: 1, value: "120+", label: "Destinations" },
-  { id: 2, value: "8K+", label: "Happy travelers" },
-  { id: 3, value: "50+", label: "Tour packages" },
-];
-
-export const tours = [
-  {
-    id: 1,
-    name: "Bali Adventure Tour",
-    duration: "7 days",
-    groupSize: "12 people",
-    price: "$899",
-    rating: 4.9,
-    image:
-      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&auto=format&fit=crop",
-    bg: "bg-teal-50",
-    includes: ["Hotel", "Flights", "Guide", "Meals"],
-    description:
-      "Explore the magic of Bali with temple visits, rice terraces and beach adventures.",
-  },
-  {
-    id: 2,
-    name: "Paris Getaway",
-    duration: "5 days",
-    groupSize: "8 people",
-    price: "$1,199",
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&auto=format&fit=crop",
-    bg: "bg-indigo-50",
-    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
-    description:
-      "Fall in love with Paris — Eiffel Tower, Louvre, fine dining and fashion.",
-  },
-  {
-    id: 3,
-    name: "Dubai Luxury",
-    duration: "6 days",
-    groupSize: "10 people",
-    price: "$1,050",
-    rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop",
-    bg: "bg-orange-50",
-    includes: ["Hotel", "Flights", "Guide", "Meals"],
-    description:
-      "Experience the glamour of Dubai with desert safari, Burj Khalifa and luxury malls.",
-  },
-  {
-    id: 4,
-    name: "Tokyo Explorer",
-    duration: "8 days",
-    groupSize: "10 people",
-    price: "$1,300",
-    rating: 4.9,
-    image:
-      "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&auto=format&fit=crop",
-    bg: "bg-pink-50",
-    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
-    description:
-      "Discover the neon lights, ancient temples and world-class cuisine of Tokyo.",
-  },
-  {
-    id: 5,
-    name: "Santorini Romance",
-    duration: "6 days",
-    groupSize: "8 people",
-    price: "$1,400",
-    rating: 4.9,
-    image:
-      "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop",
-    bg: "bg-green-50",
-    includes: ["Villa", "Flights", "Guide", "Breakfast"],
-    description:
-      "Watch the world's most beautiful sunsets from Oia and explore blue-domed churches.",
-  },
-  {
-    id: 6,
-    name: "Maldives Paradise",
-    duration: "7 days",
-    groupSize: "6 people",
-    price: "$2,100",
-    rating: 5.0,
-    image:
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&auto=format&fit=crop",
-    bg: "bg-cyan-50",
-    includes: ["Overwater Villa", "Flights", "Snorkeling", "All Meals"],
-    description:
-      "Stay in luxury overwater bungalows above crystal clear turquoise lagoons.",
-  },
-  {
-    id: 7,
-    name: "Barcelona City Break",
-    duration: "5 days",
-    groupSize: "12 people",
-    price: "$1,100",
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&auto=format&fit=crop",
-    bg: "bg-yellow-50",
-    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
-    description:
-      "Explore Gaudí's masterpieces, tapas bars and beautiful beaches of Barcelona.",
-  },
-  {
-    id: 8,
-    name: "Cape Town Safari",
-    duration: "7 days",
-    groupSize: "10 people",
-    price: "$1,250",
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&auto=format&fit=crop",
-    bg: "bg-rose-50",
-    includes: ["Hotel", "Flights", "Safari", "Breakfast"],
-    description:
-      "Climb Table Mountain, visit Cape of Good Hope and enjoy world-class wine estates.",
-  },
-  {
-    id: 9,
-    name: "Rome Eternal City",
-    duration: "5 days",
-    groupSize: "12 people",
-    price: "$1,050",
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&auto=format&fit=crop",
-    bg: "bg-amber-50",
-    includes: ["Hotel", "Flights", "Guide", "Breakfast"],
-    description:
-      "Walk through the Colosseum, toss a coin in Trevi Fountain and eat heavenly pasta.",
   },
 ];

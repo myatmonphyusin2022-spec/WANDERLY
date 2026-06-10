@@ -8,7 +8,7 @@ import { MapPin, Search, Star, Clock, Heart, X } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useCurrency } from "../context/CurrencyContext";
 import { useWishlist } from "../context/WishlistContext";
-
+import PageTransition from "../components/PageTransition";
 const regions = [
   "All",
   "Southeast Asia",
@@ -44,6 +44,7 @@ function Destinations() {
   });
 
   return (
+    <PageTransition>
     <main className="py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -233,6 +234,7 @@ function Destinations() {
         destination={selectedDest}
       />
     </main>
+     </PageTransition>
   );
 }
 

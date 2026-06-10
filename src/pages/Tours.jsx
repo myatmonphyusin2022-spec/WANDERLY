@@ -6,7 +6,7 @@ import { Star, Clock, Users, CheckCircle, ArrowRight } from "../icons";
 import BookingDialog from "../components/BookingDialog";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
-
+import PageTransition from "../components/PageTransition";
 function Tours() {
   const [selected, setSelected] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -30,6 +30,7 @@ function Tours() {
   };
 
   return (
+    <PageTransition>
     <main className="py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -182,6 +183,7 @@ function Tours() {
         destination={selectedTour}
       />
     </main>
+    </PageTransition>
   );
 }
 

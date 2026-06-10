@@ -1,5 +1,6 @@
 import { Card, CardContent } from "./ui/card";
 import { Shield, DollarSign, Headphones, Map } from "../icons";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -33,30 +34,41 @@ function Features() {
     <section className="bg-teal-50 dark:bg-teal-950 py-12 md:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-8"
+        >
           <p className="text-xs tracking-widest uppercase text-gray-400 mb-1">
             Why choose us
           </p>
           <h2 className="text-xl md:text-2xl font-bold">
             Travel smarter with Wanderly
           </h2>
-        </div>
+        </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {features.map((feature) => (
-            <Card
+          {features.map((feature, index) => (
+            <motion.div
               key={feature.id}
-              className="hover:shadow-md transition dark:bg-gray-900 dark:border-gray-800"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <CardContent className="p-4 md:p-5 flex flex-col gap-3">
-                <span className="text-teal-600">{feature.icon}</span>
-                <h3 className="font-semibold text-sm">{feature.title}</h3>
-                <p className="text-xs text-gray-400 leading-relaxed">
-                  {feature.desc}
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-md transition dark:bg-gray-900 dark:border-gray-800 h-full">
+                <CardContent className="p-4 md:p-5 flex flex-col gap-3">
+                  <span className="text-teal-600">{feature.icon}</span>
+                  <h3 className="font-semibold text-sm">{feature.title}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

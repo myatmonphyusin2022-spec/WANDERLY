@@ -18,6 +18,8 @@ import BookingDialog from "../components/BookingDialog";
 import { useCurrency } from "../context/CurrencyContext";
 import { useWishlist } from "../context/WishlistContext";
 import PageTransition from "../components/PageTransition";
+import ImageCarousel from "../components/ImageCarousel";
+
 function DestinationDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -45,19 +47,15 @@ function DestinationDetail() {
   return (
     <PageTransition>
       <main className="pb-16">
-        {/* Hero image */}
-        <div className="relative h-72 md:h-[500px] overflow-hidden">
-          <img
-            src={dest.image}
-            alt={dest.name}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/80" />
+        {/* Hero Carousel */}
+        <div className="relative">
+          <ImageCarousel images={dest.images || [dest.image]} />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 pointer-events-none" />
 
           {/* Back button */}
           <button
             onClick={() => navigate("/destinations")}
-            className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white border border-white/30 px-3 py-2 rounded-lg text-sm flex items-center gap-2 hover:bg-white/30 transition"
+            className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white border border-white/30 px-3 py-2 rounded-lg text-sm flex items-center gap-2 hover:bg-white/30 transition z-10"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
@@ -66,7 +64,7 @@ function DestinationDetail() {
           {/* Wishlist button */}
           <button
             onClick={() => toggleWishlist(dest)}
-            className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-lg hover:scale-110 transition-transform"
+            className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-lg hover:scale-110 transition-transform z-10"
           >
             <Heart
               className={`w-5 h-5 transition ${
@@ -78,7 +76,7 @@ function DestinationDetail() {
           </button>
 
           {/* Hero content */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 z-10">
             <div className="max-w-6xl mx-auto">
               <Badge className="bg-teal-600 text-white mb-3">
                 {dest.badge}
@@ -90,7 +88,7 @@ function DestinationDetail() {
                 <MapPin className="w-4 h-4" />
                 {dest.region}
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-wrap">
                 <span className="flex items-center gap-1 text-white/80 text-sm">
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   {dest.rating} ({dest.reviews} reviews)
@@ -145,7 +143,7 @@ function DestinationDetail() {
                   {dest.highlights.map((highlight, i) => (
                     <div
                       key={i}
-                      className="relative h-24 rounded-2xl overflow-hidden group cursor-pointer"
+                      className="relative h-24 rounded-2xl overflow-hidden cursor-pointer"
                       style={{ background: `hsl(${i * 60 + 160}, 40%, 85%)` }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center p-3">
@@ -162,7 +160,6 @@ function DestinationDetail() {
             {/* Right sidebar */}
             <div className="flex flex-col gap-6">
               <Card className="sticky top-24 shadow-lg border-0 overflow-hidden">
-                {/* Price header */}
                 <div className="bg-teal-600 p-6">
                   <p className="text-teal-100 text-xs mb-1">Starting from</p>
                   <p className="text-4xl font-bold text-white">
@@ -172,7 +169,6 @@ function DestinationDetail() {
                 </div>
 
                 <CardContent className="p-6 flex flex-col gap-4">
-                  {/* Includes */}
                   <div>
                     <p className="text-sm font-semibold mb-3">
                       What's included
@@ -204,7 +200,9 @@ function DestinationDetail() {
                     onClick={() => toggleWishlist(dest)}
                   >
                     <Heart
-                      className={`w-4 h-4 mr-2 ${isWishlisted(dest.id) ? "fill-red-500 text-red-500" : ""}`}
+                      className={`w-4 h-4 mr-2 ${
+                        isWishlisted(dest.id) ? "fill-red-500 text-red-500" : ""
+                      }`}
                     />
                     {isWishlisted(dest.id)
                       ? "Saved to wishlist"

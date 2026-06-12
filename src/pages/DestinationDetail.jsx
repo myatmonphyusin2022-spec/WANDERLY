@@ -4,6 +4,7 @@ import { destinations } from "../data";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
+import ShareButton from "../components/ShareButton";
 import {
   MapPin,
   Star,
@@ -202,6 +203,11 @@ function DestinationDetail() {
                     Book now
                     <ArrowRight className="w-4 h-4" />
                   </Button>
+
+                  <ShareButton
+                    title={dest.name}
+                    text={`Check out ${dest.name} on Wanderly!`}
+                  />
 
                   <Button
                     variant="outline"

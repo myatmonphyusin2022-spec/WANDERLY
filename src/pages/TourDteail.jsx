@@ -4,6 +4,7 @@ import { tours } from "../data";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { useCurrency } from "../context/CurrencyContext";
+import ShareButton from "../components/ShareButton";
 import {
   Star,
   Clock,
@@ -224,6 +225,10 @@ function TourDetail() {
                   >
                     Book now
                     <ArrowRight className="w-4 h-4" />
+                    <ShareButton
+                      title={tour.name}
+                      text={`Check out ${tour.name} on Wanderly!`}
+                    />
                   </Button>
 
                   <Button

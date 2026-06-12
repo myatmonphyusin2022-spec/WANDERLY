@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App.jsx";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CurrencyProvider } from "./context/CurrencyContext";
+import { RecentlyViewedProvider } from "./context/RecentlyViewedContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <CurrencyProvider>
       <WishlistProvider>
-        <App />
+        <RecentlyViewedProvider>
+          <App />
+        </RecentlyViewedProvider>
       </WishlistProvider>
     </CurrencyProvider>
   </StrictMode>,

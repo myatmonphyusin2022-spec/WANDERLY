@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { destinations } from "../data";
 import { Button } from "../components/ui/button";
@@ -14,6 +14,7 @@ import {
   Heart,
   ArrowLeft,
 } from "../icons";
+import { useRecentlyViewed } from "../context/RecentlyViewedContext";
 import BookingDialog from "../components/BookingDialog";
 import { useCurrency } from "../context/CurrencyContext";
 import { useWishlist } from "../context/WishlistContext";
@@ -25,10 +26,18 @@ function DestinationDetail() {
   const navigate = useNavigate();
   const { toggleWishlist, isWishlisted } = useWishlist();
   const { convert } = useCurrency();
+  const { addToRecentlyViewed } = useRecentlyViewed();
   const [bookingOpen, setBookingOpen] = useState(false);
 
+  // dest must be defined BEFORE useEffect
   const dest = destinations.find((d) => d.id === parseInt(id));
 
+  // useEffect AFTER dest
+  useEffect(() => {
+    if (dest) {
+      addToRecentlyViewed(dest);
+    }
+  }, [dest]);
   if (!dest) {
     return (
       <div className="text-center py-20">

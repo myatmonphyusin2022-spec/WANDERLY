@@ -22,7 +22,7 @@ function Weather({ lat, lng, city }) {
     const fetchWeather = async () => {
       try {
         setLoading(true);
-        const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+        const apiKey = "73d130e2c779a2cae6bda3cda43a8278";
         const res = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`,
         );

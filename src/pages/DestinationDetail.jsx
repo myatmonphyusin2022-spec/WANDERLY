@@ -15,6 +15,7 @@ import {
   Heart,
   ArrowLeft,
 } from "../icons";
+import Weather from "../components/Weather";
 import { useRecentlyViewed } from "../context/RecentlyViewedContext";
 import BookingDialog from "../components/BookingDialog";
 import { useCurrency } from "../context/CurrencyContext";
@@ -195,7 +196,12 @@ function DestinationDetail() {
                       ))}
                     </div>
                   </div>
-
+                  {/* Weather */}
+                  <Weather
+                    lat={dest.lat}
+                    lng={dest.lng}
+                    city={dest.name.split(",")[0]}
+                  />
                   <Button
                     className="bg-teal-600 hover:bg-teal-700 text-white w-full gap-2 rounded-xl"
                     onClick={() => setBookingOpen(true)}
